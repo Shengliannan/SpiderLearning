@@ -1,10 +1,122 @@
 # SpiderLearning
 
+### 爬虫库学习
+
+##### 一、urllib库
+
+> 参考：https://www.cnblogs.com/xiaoxi-3-/p/7586072.html
+
+1.get方式提交
+
+2.post方式提交
+
+3.设置cookie登录
+
+***登录前后页面Request Headers显示的Cookie不同。***
+
+cookie流程
+
+![cookie流程](https://raw.githubusercontent.com/Shengliannan/SpiderLearning/master/image/Http%E8%AF%B7%E6%B1%82%E5%93%8D%E5%BA%94cookie.PNG)
+
+（1）设置header,构建一个已经登录过的用户的headers信息
+
+```python
+import urllib.request
+
+# 构建一个已经登录过的用户的headers信息
+headers = {
+"Cookie":
+    """
+    k:v;...
+    """,
+"Host": "XXX",
+"Upgrade-Insecure-Requests":
+"User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
+}
+url="xxx"
+# 通过headers里的报头信息（主要是Cookie信息），构建Request对象
+request = urllib.request.Request(url, headers = headers)
+# 直接访问renren主页，服务器会根据headers报头信息（主要是Cookie信息），判断这是一个已经登录的用户，并返回相应的页面
+response = urllib.request.urlopen(request)
+# 打印响应内容
+print (response.read().decode())
+```
+
+（2）
+
+##### 二、urllib3库
+
+##### 三、requests库
+
+##### 四、BeautifulSoup库
+
+***
 
 
-### 问题总结：
+### 框架学习
+
+##### Scrapy
+
+***
+
+### 必备知识：
+一、JSON
+JSON(JavaScript Object Notation)
+> [JSON官网](http://json.org)
+
+二、正则表达式
 
 
+
+三、编码&解码
+
+（1）JS编码&解码
+
+- encodeURIComponent()/decodeURIComponent()
+
+  ```html
+  <html>
+  <body>
+  <script type="text/javascript">
+  <!-- 编码：以父为名 编码结果：%E4%BB%A5%E7%88%B6%E4%B8%BA%E5%90%8D -->
+  document.write(encodeURIComponent("以父为名"))
+  document.write("<br/>")
+  <!-- 解码：%E4%BB%A5%E7%88%B6%E4%B8%BA%E5%90%8D 解码结果: 以父为名 -->
+  document.write(decodeURIComponent("%E4%BB%A5%E7%88%B6%E4%B8%BA%E5%90%8D"))
+  </script>
+  </body>
+  </html>
+  ```
+
+（2）python编码解码
+
+* urllib中的编码&解码 
+
+  quote/unquote
+
+  ```python
+  >>> import urllib.parse as parse
+  >>> print(parse.quote("以父为名"))
+  %E4%BB%A5%E7%88%B6%E4%B8%BA%E5%90%8D
+  >>> print(parse.unquote("%E4%BB%A5%E7%88%B6%E4%B8%BA%E5%90%8D"))
+  以父为名
+  ```
+
+
+
+
+（3）js前端和后台python交互
+
+
+
+
+四、爬虫攻防
+
+![爬虫攻防](https://raw.githubusercontent.com/Shengliannan/SpiderLearning/master/image/%E7%88%AC%E8%99%AB%E6%94%BB%E9%98%B2.jpg)
+
+
+
+### 爬虫进阶：
 
 ##### 一、关于phantomJs
 ***PhantomJS：无界面的浏览器***
@@ -49,7 +161,6 @@ Selenium可以模拟真实浏览器，自动化测试工具，支持多种浏览
 >参考：https://blog.csdn.net/u010358168/article/details/79749149
 
 
-
 使用第二种方法：
 
 前提条件： 
@@ -83,19 +194,13 @@ time.sleep(5) # Let the user actually see something!
 driver.quit()
 ```
 
-
-
 #####  四、 Selenium 之 操作 ChromeDriver 可配置项
-
-
 
 > 参考：https://www.meiwen.com.cn/subject/fzudgxtx.html
 
 在使用Selenium过程中，我们需要对Chrome做一些初始化设置，以便浏览器完成我们期望的行为。
 
 ChromeOptions 可以在浏览器启动之前设置加载的选项。
-
-
 
 ChromeOoptions 主要提供以下功能：
 
@@ -105,6 +210,11 @@ ChromeOoptions 主要提供以下功能：
 - 添加设置参数(add_experimental_options)
 
 
+##### 五、 IP代理
 
+##### 六、 多线程爬虫
 
+##### 七、打码平台接入
+
+##### 八、不同验证码的识别（输入数字，文字或字母、 滑动验证码 、 点击特定的标识）
 
